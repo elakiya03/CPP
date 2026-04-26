@@ -7,6 +7,9 @@ int main()
     // Display numbers
     cout << 3 << endl;
 
-    cout<< "el" <<143<<"kir"<<endl;
+    cout << "el" << 143 << "kir" << endl;
+
+    cout << 4 + 3;
+    cout << "ela" << "kiya" << endl; // add strings?
     return 0;
 }

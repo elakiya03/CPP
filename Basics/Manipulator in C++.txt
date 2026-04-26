@@ -1,0 +1,4 @@
+https://www.geeksforgeeks.org/manipulators-in-c-with-examples/
+
+This is useful for cin and cout. 
+Describes how to manipulatr output and input stream

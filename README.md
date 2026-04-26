@@ -65,6 +65,15 @@
 - `boolalpha` is not a data type. It is an I/O manipulator - a setting that changes how cout displays boolean values. When you use it, you are telling cout: "`From now on, print booleans as true and false instead of 1 and 0`."
 - If you want to go back to the default behavior (printing 1 and 0), you can use `noboolalpha`.
 
+- `Basic Data Types` - Built-in or primitive data types that are used to store simple values.
+  [int, float, double, char, bool, void]
+
+- `Derived Data Types` - Data types derived from basic types.
+  [array, pointer, reference, function]
+
+- `User Defined Data Types` - Custom data types created by the programmer according to their need.
+  [class, struct, union, typedef, using]
+
 ---
 
 ### ASCII
@@ -99,6 +108,23 @@
 12. || (logical OR)
 13. ?: (ternary)
 14. = += -= ... (assignment)
+
+### Typecasting
+
+Both implicit and explicit typecaasting which has its own disadvantage.
+
+- it old and unsafe.
+
+- C++ has its own type casting methos using cast operators to overcome the disadvantages.
+
+`Type conversion` means converting one type of data to another compatible type such that it doesn’t lose its meaning. It is essential for managing different data types in C++.
+
+Cast operator is an unary operator which forces one data type to be converted into another data type. C++ supports four types of casting:
+
+1. `Static Cast:` Used for standard compile time type conversions.
+2. `Dynamic Cast`: Used for runtime type conversion in polymorphism and inheritance.
+3. `Const Cast`: Removes or adds const or volatile qualifiers.
+4. `Reinterpret Cast`: Used for low-level reinterpretation of bits (e.g., converting pointers).
 
 ### Reference
 
@@ -146,3 +172,13 @@ A reference variable is an alias for an existing variable. It is created using t
 - It is usually declared public.
 - It is automatically called when an object is created.
 - It can take parameters which can be suefull for setting inital values
+- `Constructor Overloading `- based on no of paramters
+
+### Access specifiers
+
+1. public - access members outside of the class
+2. private - members can't be accessed outside of the class
+3. protected - same as private. but members can be inheritated(can be accessed in child class)
+4. by default, all members of a class are private if you dont specify an access specifier
+
+---

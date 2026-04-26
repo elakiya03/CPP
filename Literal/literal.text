@@ -1,0 +1,21 @@
+literals are fundamental elements used to represent fixed values. 
+These values can include numbers, characters, strings, and more. 
+They are generally present as the right operand in the assignment operation.
+
+Types of Literals in C++
+There are five types of literals in C++ based on the type of information they represent:
+
+1. Integer Literals 
+Integer literals in C++ are values that represent whole numbers without the fractional or decimal part. They can be positive or negative and can have different bases such as decimal, octal, or hexadecimal
+
+2.Floating-Point Literals
+The Floating-point literals in C++ are the values that represent numbers with the fractional or decimal part. These can be either single-precision or double-precision values
+
+3.Character Literals
+As C++ using ASCII character set, there are 128 possible character literals.
+
+4.String Literals
+The string literals in C++ are the sequences of the characters enclosed in double quotes
+
+5.Boolean Literals
+The boolean literals represent the truth values and have only two possible values: true and false
