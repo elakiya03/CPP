@@ -5,10 +5,10 @@ int main()
 {
     try
     {
-        throw 'a';
+        throw 505;
     }
-    catch (...) // catch all - default
+    catch (...) // catch any type of exception - default
     {
-        cout << "Using default catch all blockk which will catch all the exceptions";
+        cout << "Using default catch all block which will catch all the exceptions";
     }
 }

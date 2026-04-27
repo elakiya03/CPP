@@ -153,6 +153,11 @@ A reference variable is an alias for an existing variable. It is created using t
 
 - `Lambda Function` - When you only need the function once and it's short
 
+- `Virtual function` is a memeber function in the base class that can be overrriden in derived class.
+  - `Without virtual`, C++ decides which function to call based on the pointer type, not the actual object type.
+
+  - `With virtual`, it checks the actual object the pointer is pointing to.
+
 ### Object-orieneted programming
 
 # class and object
@@ -182,3 +187,23 @@ A reference variable is an alias for an existing variable. It is created using t
 4. by default, all members of a class are private if you dont specify an access specifier
 
 ---
+
+### 4 Pillars of OOPs
+
+1. Abstraction
+2. Encapsulation
+3. Inheritance
+4. Polymorphism
+
+### Templates
+
+A template lets write generic code - one functio/class -> which works with many data types
+
+1. functions
+2. class
+
+### Files
+
+1. `ofstream` - Creates and writes to files
+2. `ifstream` - Reads from files
+3. `fstream` - A combination of ofstream and ifstream: creates, reads, and writes to files

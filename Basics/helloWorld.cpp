@@ -1,4 +1,4 @@
-// Header file for input output functions
+// Header file for input output library functions
 #include <iostream>
 using namespace std;
 
