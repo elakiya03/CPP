@@ -1,3 +1,6 @@
+//without templates if you wan to max/add function for int, float and double, need to write 3 functions.
+
+//with templates
 #include <iostream>
 using namespace std;
 
