@@ -1,32 +1,28 @@
 #include <iostream>
 using namespace std;
 
-class message
-{
-public:
+class message {
+   public:
     string name;
     int id;
-    message() // constructor
-    {
+
+    message() {  // default constructor
         cout << "Hi nga!" << endl;
     }
 
-    message(string n) // paramterized constructor
-    {
-        name = n;
-    }
+    //FAST - directly initializes memebers (one step)
+    message(string n) : name(n) {}  // paramterized constructor
 
-    message(int m); // constructor declaration
+    message(int m);  // constructor declaration
 };
 
-message::message(int m) // constructor definition outside class
-{
+message::message(int m) {  // constructor definition outside class
     id = m;
 }
-int main()
-{
-    message m; // this will call the construtor
-    
+
+int main() {
+    message m;  // this will call the construtor
+
     message m1("elaks");
     cout << m1.name;
 

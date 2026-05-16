@@ -1,18 +1,31 @@
 #include <iostream>
 using namespace std;
-class message
-{
-    public:
-        string name;
+class BankAccount {
+   private:  // only accessible inside the class
+    double balance;
+    string pin;
 
-    private:
-        string place;
+   protected:  // accessible inside class + derived classes
+    string accountNumber;
+
+   public:  // accessible from anywhere
+    string ownerName;
+
+    void deposit(double amount) {
+        if (amount > 0)
+            balance += amount;  // private member — accessible here
+    }
+
+    double getBalance() {
+        return balance;  // controlled access to private data
+    }
 };
-int main()
-{
 
-    message m;
-    m.name = "elaks"; //(public)
-    // m.place  -> not allowed (private)
-    return 0;
+int main() {
+    BankAccount acc;
+    acc.ownerName = "Alice";  // OK — public
+    acc.deposit(1000);        // OK — public method
+    cout << acc.getBalance() << endl;
+    // acc.balance = 9999;      // ERROR — private
+    // acc.pin    = "1234";     // ERROR — private
 }

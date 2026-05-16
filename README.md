@@ -617,7 +617,7 @@ size_t pos = s.find("World");
 // Replace
 s.replace(pos, 5, "Universe");
 
-// Split (manual)
+// Split string(manual)
 vector<string> split(string s, char delimiter) {
     vector<string> tokens;
     stringstream ss(s);
@@ -794,6 +794,48 @@ delete ptr;
 - Constructor overloading based on parameters
 - Default constructor: no parameters
 - Copy constructor: `Class(const Class& other)`
+
+### Copy Constructor
+
+**What it is:** A constructor that initializes a new object by copying an existing object of the same class.
+
+**Syntax:**
+
+```cpp
+ClassName(const ClassName& other);
+```
+
+**Example:**
+
+```cpp
+class Rectangle {
+public:
+    double width;
+    double height;
+
+    Rectangle(double w, double h) : width(w), height(h) {}
+// Deep copy constructor
+    Rectangle(const Rectangle& other) {
+        width = new double(*other.width);
+        height = new double(*other.height);
+    }
+
+    ~Rectangle() {
+        delete width;
+        delete height;
+    }
+};
+
+Rectangle r1(10, 5);
+Rectangle r2 = r1;  // Calls copy constructor
+```
+
+**Key points to remember:**
+
+- Used when passing objects by value, returning objects from functions, or initializing one object from another
+- Default copy constructor performs shallow copy of members
+- Define a custom copy constructor for classes managing dynamic memory or resources
+- If you define a copy constructor, also consider defining copy assignment operator and destructor (Rule of Three)
 
 ### `this` Pointer
 
@@ -1363,53 +1405,159 @@ binFile.close();
 
 ## Standard Template Library (STL)
 
+The STL is a set of template-based components designed to be efficient, flexible, and reusable. It gives you ready-made data structures, generic algorithms, and iterator abstractions so you can focus on solving problems instead of reimplementing container logic.
+
+### STL Components
+
+- **Containers:** Store objects and data.
+- **Algorithms:** Perform operations on containers or ranges.
+- **Iterators:** Connect containers with algorithms like pointers.
+
+### Why use STL?
+
+- Fast and reliable implementations
+- Type-safe through templates
+- Easy to use once you know the patterns
+- Saves time compared to writing your own data structures
+
 ### Containers
+
+Containers are the data structures used to store objects and data. Each container is a class template that provides methods for insertion, removal, access, and traversal. Every STL container is defined inside its own header and is designed to work with iterators and algorithms.
+
+Containers can be classified into four types:
+
+- **Sequence Containers:** Store elements in a linear order. Use them when order matters and you need sequential access.
+  - `vector`: dynamic array, best for random access and append operations
+  - `deque`: double-ended queue, efficient push/pop at both ends
+  - `list`: doubly linked list, efficient insertion/removal from anywhere
+  - `forward_list`: singly linked list, lower memory overhead for forward-only traversal
+  - `array`: fixed-size array with stack allocation and static size
+- **Container Adaptors:** Provide a restricted interface by using other sequence containers internally.
+  - `stack`: LIFO behavior, use when only top access is needed
+  - `queue`: FIFO behavior, use for breadth-first order
+  - `priority_queue`: always expose the largest element first
+- **Associative Containers:** Store elements in sorted order and allow fast lookup by key.
+  - `set`: unique sorted values
+  - `multiset`: sorted values with duplicates allowed
+  - `map`: sorted key-value pairs with unique keys
+  - `multimap`: sorted key-value pairs with duplicate keys allowed
+- **Unordered Associative Containers:** Store elements in hash buckets for average constant-time lookup.
+  - `unordered_set`: unique values with hash-based lookup
+  - `unordered_multiset`: duplicate values allowed
+  - `unordered_map`: key-value pairs with hash-based lookup
+  - `unordered_multimap`: duplicate hashed keys allowed
+
+Using STL containers means you do not need to manually implement memory management and traversal for common data structures. They are tested, optimized, and work consistently across compilers.
 
 #### Vector (Dynamic Array)
 
+`vector` is the most common sequence container. It stores elements contiguously, so random access is fast and it works well with C-style arrays.
+
 ```cpp
 #include <vector>
+#include <iostream>
 
-vector<int> vec = {1, 2, 3};
-vec.push_back(4);        // Add element
-vec.pop_back();          // Remove last
-cout << vec[0] << endl;  // Access element
-vec.size();              // Get size
+using namespace std;
+
+int main() {
+    vector<int> vec = {1, 2, 3};
+    vec.push_back(4);                 // Add element
+    vec.insert(vec.begin() + 1, 10); // Insert at position 1
+    vec.pop_back();                   // Remove last element
+
+    for (int value : vec) {
+        cout << value << " ";
+    }
+    cout << "\nSize: " << vec.size() << endl;
+}
 ```
 
 #### List (Doubly Linked List)
 
+`list` stores elements as a doubly linked chain. It is useful when you need to insert or remove items frequently in the middle of the container.
+
 ```cpp
 #include <list>
+#include <iostream>
 
-list<int> lst = {1, 2, 3};
-lst.push_front(0);       // Add to front
-lst.push_back(4);        // Add to back
-lst.pop_front();         // Remove from front
+using namespace std;
+
+int main() {
+    list<int> lst = {1, 2, 3};
+    lst.push_front(0);       // Add to front
+    lst.push_back(4);        // Add to back
+    lst.pop_front();         // Remove from front
+
+    for (int value : lst) {
+        cout << value << " ";
+    }
+    cout << endl;
+}
 ```
 
 #### Map (Associative Array)
 
+`map` stores sorted key-value pairs. It is ideal when you need lookups by key and want keys kept in order.
+
 ```cpp
 #include <map>
+#include <iostream>
+#include <string>
 
-map<string, int> scores;
-scores["Alice"] = 95;
-scores["Bob"] = 87;
-cout << scores["Alice"] << endl;  // 95
+using namespace std;
+
+int main() {
+    map<string, int> scores;
+    scores["Alice"] = 95;
+    scores["Bob"] = 87;
+    scores.insert({"Carol", 92});
+
+    for (const auto& pair : scores) {
+        cout << pair.first << ": " << pair.second << endl;
+    }
+}
 ```
 
 #### Set (Unique Elements)
 
+`set` stores unique sorted values and is useful when duplicates are not allowed.
+
 ```cpp
 #include <set>
+#include <iostream>
 
-set<int> numbers = {1, 2, 3, 2};  // Duplicates removed
-numbers.insert(4);
-numbers.erase(2);
+using namespace std;
+
+int main() {
+    set<int> numbers = {1, 2, 3, 2};  // Duplicates removed
+    numbers.insert(4);
+    numbers.erase(2);
+
+    for (int value : numbers) {
+        cout << value << " ";
+    }
+    cout << endl;
+}
 ```
 
 ### Algorithms
+
+STL algorithms offer a wide range of functions to perform common operations on data, mainly containers. They implement efficient versions of tasks such as sorting, searching, modifying, and manipulating ranges.
+
+Most algorithms are defined in `<algorithm>` and `<numeric>`, while some specialized utilities appear in headers like `<memory>`, `<functional>`, and `<iterator>`.
+
+Some commonly used algorithms:
+
+- `sort`: Arranges elements in ascending order (default)
+- `binary_search`: Checks whether a value exists in a sorted range
+- `find`: Searches for the first occurrence of a given value
+- `count`: Counts how many times a value appears in a range
+- `reverse`: Reverses the order of elements in a range
+- `accumulate`: Computes the sum of all elements in a range
+- `unique`: Removes consecutive duplicate elements
+- `lower_bound`: Returns iterator to first element ≥ value in a sorted range
+- `upper_bound`: Returns iterator to first element > value in a sorted range
+- `replace`: Replaces all occurrences of an old value with a new value in the given range
 
 ```cpp
 #include <algorithm>
@@ -1423,6 +1571,10 @@ bool found = binary_search(vec.begin(), vec.end(), 4);
 
 ### Iterators
 
+Iterators are pointer-like objects that point to elements inside STL containers. They connect containers with algorithms and let generic code work on many container types.
+
+Iterators are defined in headers like `<iterator>` and usually provided by containers through methods such as `begin()`, `end()`, `rbegin()`, and `rend()`.
+
 ```cpp
 vector<int> vec = {1, 2, 3, 4, 5};
 for (auto it = vec.begin(); it != vec.end(); ++it) {
@@ -1434,6 +1586,10 @@ for (int num : vec) {
     cout << num << endl;
 }
 ```
+
+- Iterators can be input, output, forward, bidirectional, or random-access
+- Use iterator categories to choose the correct algorithm support
+- `auto` is helpful for iterator type deduction
 
 ---
 
