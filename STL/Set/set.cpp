@@ -1,17 +1,17 @@
 #include <iostream>
 #include <set>
+#include <unordered_set>
+
 using namespace std;
 
-int main()
-{
+int main() {
     set<string> names = {"elaks", "muku", "taylor", "virat", "jm"};
 
     // add
     names.insert("elaks");
 
     // sorted automatically ascending
-    for (string s : names)
-    {
+    for (string s : names) {
         cout << s << endl;
     }
 
@@ -19,8 +19,7 @@ int main()
     set<string, greater<string>> names_ = {"elaks", "muku", "taylor", "virat", "jm"};
 
     cout << "-----------" << endl;
-    for (string s : names_)
-    {
+    for (string s : names_) {
         cout << s << endl;
     }
 
@@ -28,5 +27,8 @@ int main()
     names_.erase("jm");
 
     cout << names_.size();
+
+    unordered_set<int> u;
+
     return 0;
 }
