@@ -5,21 +5,19 @@
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
     // Validate text input
     string name;
-    do
-    {
+    do {
         cout << "Enter your name" << endl;
         getline(cin, name);
-    } while (name.empty()); // keep asking ntill user enters smth
+    } while (name.empty());  // keep asking till user enters smth
     cout << "Hi " << name << "!" << endl;
 
     // Validate integer input
     int num;
     cout << "Enter a number: ";
-    while (!(cin >> num)) // keep asking untill user enters valid number
+    while (!(cin >> num))  // keep asking untill user enters valid number
     {
         cout << "Invalid Input. Try Again";
         cin.clear();
@@ -28,10 +26,14 @@ int main()
     cout << "You entered: " << num << endl;
 
     // Validate number range
-    do
-    {
+    do {
         cout << "Choose any num btw 1 to 50" << endl;
         cin >> num;
     } while (num < 1 || num > 50);
-    cout << "You choose: " << num;
+    cout << "You choosed: " << num << endl;
+
+    cout << "Enter a character: " << endl;
+    cin.ignore(10000, '\n');  //--------------------> consume newline
+    char c = cin.get();
+    cout.put(c);
 }
